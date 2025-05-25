@@ -17,7 +17,7 @@ A powerful tool that generates engaging social media posts using AI. Supports mu
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/social-media-generator.git
+git clone https://github.com/xhanafix/social-media-generator.git
 cd social-media-generator
 ```
 
