@@ -1,6 +1,6 @@
 # AI Social Media Post Generator
 
-A powerful tool that generates engaging social media posts using AI. Supports multiple platforms, languages, and tones.
+A powerful tool that generates engaging social media posts using AI. Supports multiple platforms, languages, and tones. Built with a strong focus on factual accuracy and verified information.
 
 ## Features
 
@@ -12,6 +12,36 @@ A powerful tool that generates engaging social media posts using AI. Supports mu
 - Image suggestions
 - Post history tracking
 - Modern web interface
+- **Factual Accuracy System**
+  - Verified information only
+  - No unsubstantiated claims
+  - Reliable source citations
+  - Clear fact/opinion distinction
+  - Built-in fact-checking guidelines
+
+## Factual Accuracy Guidelines
+
+The generator follows strict guidelines to ensure all content is factual and verified:
+
+1. ✅ **Verified Information Only**
+   - All content is based on verified facts
+   - No unsubstantiated claims or rumors
+   - Clear distinction between facts and opinions
+
+2. ✅ **Source Reliability**
+   - Statistics and facts are from reliable sources
+   - Citations are included when necessary
+   - Focus on well-established information
+
+3. ✅ **Content Quality**
+   - No misleading or false content
+   - Clear and accurate information
+   - Balanced and objective presentation
+
+4. ✅ **User Transparency**
+   - Clear indication of factual content
+   - Disclosure of opinion-based content
+   - Transparent about information sources
 
 ## Installation
 
@@ -60,11 +90,11 @@ The generator uses OpenRouter's API to access various AI models. By default, it 
 
 ### Available Models
 Some popular models you can use:
-- `anthropic/claude-3-opus:beta` - Most capable model, best for complex content
-- `anthropic/claude-3-sonnet:beta` - Good balance of capability and speed
-- `google/gemini-pro` - Strong performance for creative content
-- `meta-llama/llama-2-70b-chat` - Good for general purpose content
-- `mistralai/mistral-7b-instruct` - Fast and efficient
+- `anthropic/claude-3-opus:beta` - Most capable model, best for complex content and factual accuracy
+- `anthropic/claude-3-sonnet:beta` - Good balance of capability, speed, and accuracy
+- `google/gemini-pro` - Strong performance for creative content with factual verification
+- `meta-llama/llama-2-70b-chat` - Good for general purpose content with fact-checking
+- `mistralai/mistral-7b-instruct` - Fast and efficient with basic fact verification
 - `deepseek/deepseek-chat-v3-0324:free` - Free tier model (default)
 
 ### How to Change the Model
@@ -84,7 +114,9 @@ Some popular models you can use:
   - Language support
   - Context length
   - Response speed
+  - Factual accuracy
 - Free tier models may have rate limits
+- Fact-checking capabilities vary by model
 
 ## Contributing
 
@@ -102,3 +134,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Powered by OpenRouter AI
 - Built with Streamlit
+- Fact-checking guidelines based on industry best practices
