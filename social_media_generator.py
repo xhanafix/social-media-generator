@@ -183,7 +183,16 @@ class SocialMediaPostGenerator:
         {language_instruction}.
         Write in second-person perspective (using 'you' and 'your').
         Length should be {length}.
-        Make it engaging, emotional, and authentic.
+        
+        IMPORTANT GUIDELINES:
+        1. Only include verified, factual information
+        2. Avoid making unsubstantiated claims
+        3. If citing statistics or facts, ensure they are from reliable sources
+        4. Do not generate content that could be misleading or false
+        5. Focus on well-established, widely accepted information
+        6. If uncertain about a fact, either omit it or clearly indicate it's an opinion
+        
+        Make it engaging, emotional, and authentic while maintaining accuracy.
         Include relevant emojis naturally in the text.
         Focus on storytelling and relatability.
         For long posts, ensure the content is well-structured with clear paragraphs.
@@ -202,11 +211,17 @@ class SocialMediaPostGenerator:
             data = {
                 "model": self.default_model,
                 "messages": [
-                    {"role": "system", "content": f"You are a creative social media copywriter who specializes in writing engaging, emotionally resonant posts in {language}. Use 'you' and 'your' to create a personal connection with the reader. For long posts, ensure proper paragraph breaks and structure."},
+                    {"role": "system", "content": f"""You are a creative social media copywriter who specializes in writing engaging, emotionally resonant posts in {language}. 
+                    Your primary responsibility is to ensure all information is factual and verified.
+                    Use 'you' and 'your' to create a personal connection with the reader.
+                    For long posts, ensure proper paragraph breaks and structure.
+                    Never generate content that could be misleading or false.
+                    If you're unsure about a fact, either omit it or clearly mark it as an opinion.
+                    Always prioritize accuracy over engagement."""},
                     {"role": "user", "content": prompt}
                 ],
                 "max_tokens": max_tokens,
-                "temperature": 0.7,
+                "temperature": 0.5,  # Reduced temperature for more factual output
                 "presence_penalty": 0.6,
                 "frequency_penalty": 0.3
             }

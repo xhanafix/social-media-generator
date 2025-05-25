@@ -90,7 +90,24 @@ if 'show_history' not in st.session_state:
 st.title("✨ AI Social Media Post Generator")
 st.markdown("""
 Generate scroll-stopping, emotionally resonant social media posts in seconds. Powered by OpenRouter AI.
+
+**Factual Accuracy Notice:** This generator is designed to create content based on verified information only. All generated posts prioritize factual accuracy and avoid unsubstantiated claims. While the content is AI-generated, it follows strict guidelines to ensure reliability and truthfulness.
 """)
+
+# Add information about content guidelines
+with st.expander("ℹ️ Content Guidelines"):
+    st.markdown("""
+    Our AI follows these strict guidelines to ensure factual accuracy:
+    
+    1. ✅ Only verified information is included
+    2. ✅ No unsubstantiated claims
+    3. ✅ Statistics and facts are from reliable sources
+    4. ✅ No misleading or false content
+    5. ✅ Focus on well-established information
+    6. ✅ Clear distinction between facts and opinions
+    
+    While the content is engaging and emotional, accuracy is always our top priority.
+    """)
 
 # Tabs for generation and history
 tab1, tab2 = st.tabs(["Generate Post", "History"])
