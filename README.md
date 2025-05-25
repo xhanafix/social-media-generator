@@ -101,4 +101,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Acknowledgments
 
 - Powered by OpenRouter AI
-- Built with Streamlit 
+- Built with Streamlit
