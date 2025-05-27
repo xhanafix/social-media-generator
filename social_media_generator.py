@@ -401,7 +401,7 @@ class SocialMediaPostGenerator:
             }
             
             data = {
-                "model": "anthropic/claude-3-opus-20240229",
+                "model": "deepseek/deepseek-chat-v3-0324:free",
                 "messages": [
                     {
                         "role": "system",
