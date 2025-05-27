@@ -23,18 +23,18 @@ class SocialMediaPostGenerator:
         self.api_base = "https://openrouter.ai/api/v1"
         self.default_model = "deepseek/deepseek-chat-v3-0324:free"  # You can change this to any model supported by OpenRouter
         
-        # Timeout settings (in seconds) - increased for better handling of long content
+        # Timeout settings (in seconds) - increased for better handling of longer content
         self.timeouts = {
-            'short': 20,    # Increased from 10
-            'medium': 30,   # Increased from 15
-            'long': 45      # Increased from 20
+            'short': 30,    # Increased for more content
+            'medium': 60,   # Increased for longer content
+            'long': 90      # Increased for longest content
         }
         
         # Token limits for different lengths
         self.token_limits = {
-            'short': 200,   # Increased from 150
-            'medium': 400,  # Increased from 250
-            'long': 800     # Increased from 400
+            'short': 400,   # Approximately 300 words
+            'medium': 1200, # Approximately 900 words
+            'long': 2000    # Approximately 1500 words
         }
         
         # History file path
@@ -89,36 +89,36 @@ class SocialMediaPostGenerator:
             },
             'BM': {
                 'Facebook': [
-                    "💬 Apa pendapat anda?",
-                    "Kongsi jika anda setuju!",
-                    "Tag seseorang yang perlu lihat ini!",
-                    "Tekan ❤️ jika ini bermakna untuk anda!"
+                    "💬 Apa pendapat kau?",
+                    "Kongsi kalau kau setuju!",
+                    "Tag kawan yang perlu tengok ni!",
+                    "Tekan ❤️ kalau kau rasa sama!"
                 ],
                 'Instagram': [
-                    "Double tap jika anda setuju!",
-                    "Tag kawan yang perlukan ini!",
-                    "Simpan untuk kemudian!",
-                    "Follow untuk lebih banyak kandungan!"
+                    "Double tap kalau kau setuju!",
+                    "Tag kawan yang perlukan ni!",
+                    "Simpan untuk tengok balik!",
+                    "Follow untuk lebih banyak content!"
                 ],
                 'LinkedIn': [
-                    "Apa pendapat anda?",
-                    "Kongsi pengalaman anda dalam komen!",
-                    "Connect jika ini bermakna untuk anda!",
-                    "Follow untuk lebih banyak insight profesional!"
+                    "Apa pendapat kau?",
+                    "Kongsi pengalaman kau dalam komen!",
+                    "Connect kalau kau rasa sama!",
+                    "Follow untuk lebih banyak insight!"
                 ],
                 'Twitter': [
-                    "RT jika anda setuju!",
+                    "RT kalau kau setuju!",
                     "Like & follow untuk lebih banyak!",
-                    "Apa pendapat anda?",
-                    "Kongsi pendapat anda di bawah!"
+                    "Apa pendapat kau?",
+                    "Kongsi pendapat kau kat bawah!"
                 ],
                 'TikTok': [
                     "Follow untuk lebih banyak! 🎵",
-                    "Tekan ❤️ jika anda setuju!",
-                    "Simpan untuk kemudian! 📱",
-                    "Komen pendapat anda di bawah! 💭",
-                    "Kongsi dengan yang perlukan! 🔄",
-                    "Double tap jika anda setuju! 👆"
+                    "Tekan ❤️ kalau kau setuju!",
+                    "Simpan untuk tengok balik! 📱",
+                    "Komen pendapat kau kat bawah! 💭",
+                    "Kongsi dengan kawan yang perlukan! 🔄",
+                    "Double tap kalau kau rasa sama! 👆"
                 ]
             }
         }
@@ -179,10 +179,17 @@ class SocialMediaPostGenerator:
         """Generate content using OpenRouter API with timeout."""
         language_instruction = "Write in English" if language == 'EN' else "Write in Bahasa Malaysia"
         
+        # Add word count instructions based on length
+        word_count_instruction = {
+            'short': "Write approximately 300 words",
+            'medium': "Write approximately 900 words",
+            'long': "Write approximately 1500 words"
+        }.get(length.lower(), "Write appropriate length")
+        
         prompt = f"""Create a {tone.lower()} social media post about {topic} for {platform}.
         {language_instruction}.
+        {word_count_instruction}.
         Write in second-person perspective (using 'you' and 'your').
-        Length should be {length}.
         
         IMPORTANT GUIDELINES:
         1. Only include verified, factual information
@@ -213,6 +220,7 @@ class SocialMediaPostGenerator:
                 "messages": [
                     {"role": "system", "content": f"""You are a creative social media copywriter who specializes in writing engaging, emotionally resonant posts in {language}. 
                     Your primary responsibility is to ensure all information is factual and verified.
+                    For Bahasa Malaysia posts, use casual language with 'aku' and 'kau' instead of formal 'saya' and 'kamu'.
                     Use 'you' and 'your' to create a personal connection with the reader.
                     For long posts, ensure proper paragraph breaks and structure.
                     Never generate content that could be misleading or false.
@@ -340,10 +348,10 @@ class SocialMediaPostGenerator:
                 f"💪 Transform your {topic} with this simple tip:"
             ],
             'BM': [
-                f"✨ Bermasalah dengan {topic}? Ini yang anda perlu tahu...",
-                f"💡 Mahu kuasai {topic}? Mulakan dengan ini...",
-                f"🚀 Perjalanan anda ke arah {topic} bermula di sini:",
-                f"💪 Ubah {topic} anda dengan tip mudah ini:"
+                f"✨ Bermasalah dengan {topic}? Ini yang kau perlu tahu...",
+                f"💡 Mahu kuasai {topic}? Mulakan dengan ni...",
+                f"🚀 Perjalanan kau ke arah {topic} bermula kat sini:",
+                f"💪 Ubah {topic} kau dengan tip mudah ni:"
             ]
         }
         return random.choice(templates[language])
@@ -358,10 +366,10 @@ class SocialMediaPostGenerator:
                 f"💪 Your {topic} doesn't have to be complicated.\n\nHere's why:"
             ],
             'BM': [
-                f"✨ Bermasalah dengan {topic}?\n\nAnda tidak keseorangan. Ini yang mengubah segalanya untuk saya...",
-                f"💡 Kebenaran tentang {topic} yang tiada siapa beritahu anda:\n\n",
-                f"🚀 Mahu ubah {topic} anda?\n\nIni cara saya lakukannya:",
-                f"💪 {topic} anda tidak perlu rumit.\n\nIni sebabnya:"
+                f"✨ Bermasalah dengan {topic}?\n\nKau tak keseorangan. Ini yang mengubah segalanya untuk aku...",
+                f"💡 Kebenaran tentang {topic} yang tiada siapa beritahu kau:\n\n",
+                f"🚀 Mahu ubah {topic} kau?\n\nIni cara aku lakukannya:",
+                f"💪 {topic} kau tak perlu rumit.\n\nIni sebabnya:"
             ]
         }
         return random.choice(templates[language])
@@ -376,27 +384,63 @@ class SocialMediaPostGenerator:
                 f"💪 Master your {topic} with these expert tips:\n\n"
             ],
             'BM': [
-                f"✨ Panduan lengkap anda untuk {topic}:\n\nIni semua yang anda perlu tahu...",
-                f"💡 Perjalanan anda dengan {topic} dan apa yang anda akan pelajari:\n\n",
-                f"🚀 Ubah {topic} anda dengan strategi yang terbukti ini:\n\n",
-                f"💪 Kuasai {topic} anda dengan tip pakar ini:\n\n"
+                f"✨ Panduan lengkap kau untuk {topic}:\n\nIni semua yang kau perlu tahu...",
+                f"💡 Perjalanan kau dengan {topic} dan apa yang kau akan pelajari:\n\n",
+                f"🚀 Ubah {topic} kau dengan strategi yang terbukti ini:\n\n",
+                f"💪 Kuasai {topic} kau dengan tip pakar ini:\n\n"
             ]
         }
         return random.choice(templates[language])
     
     def _generate_image_suggestions(self, topic: str, tone: str) -> List[str]:
         """Generate relevant image suggestions based on topic and tone."""
-        suggestions = [
-            f"A person looking determined while working on {topic}",
-            f"A split image showing before/after of {topic}",
-            f"A close-up of hands working on {topic}",
-            f"A person smiling while achieving {topic}",
-            f"A minimalist representation of {topic}",
-            f"A group of people collaborating on {topic}",
-            f"A workspace organized for {topic}",
-            f"A person looking inspired while thinking about {topic}"
-        ]
-        return random.sample(suggestions, 2)
+        try:
+            headers = {
+                "Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}",
+                "Content-Type": "application/json"
+            }
+            
+            data = {
+                "model": "anthropic/claude-3-opus-20240229",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are a creative social media expert. Generate 2 specific and relevant image suggestions that would perfectly complement a social media post about the given topic and tone. Make the suggestions detailed and specific to the content."
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Generate 2 specific image suggestions for a social media post about {topic} with a {tone} tone. The suggestions should be detailed and directly relevant to the content."
+                    }
+                ]
+            }
+            
+            response = requests.post(
+                f"{self.api_base}/chat/completions",
+                headers=headers,
+                json=data,
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                content = response.json()['choices'][0]['message']['content'].strip()
+                # Split the response into individual suggestions
+                suggestions = [s.strip() for s in content.split('\n') if s.strip()]
+                # Take the first 2 suggestions
+                return suggestions[:2]
+            else:
+                # Fallback to generic suggestions if API call fails
+                return [
+                    f"A person looking determined while working on {topic}",
+                    f"A split image showing before/after of {topic}"
+                ]
+                
+        except Exception as e:
+            print(f"Error generating image suggestions: {e}")
+            # Fallback to generic suggestions
+            return [
+                f"A person looking determined while working on {topic}",
+                f"A split image showing before/after of {topic}"
+            ]
 
 def main():
     # Check for API key

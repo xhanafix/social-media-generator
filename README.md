@@ -5,7 +5,9 @@ A powerful tool that generates engaging social media posts using AI. Supports mu
 ## Features
 
 - Generate posts for multiple platforms (Facebook, Instagram, LinkedIn, Twitter, TikTok)
-- Support for multiple languages (English, Bahasa Malaysia)
+- Support for multiple languages:
+  - English (EN)
+  - Bahasa Malaysia (BM) with casual language style (aku/kau)
 - Various post lengths (short, medium, long)
 - Different emotional tones
 - Automatic hashtag generation
@@ -18,6 +20,21 @@ A powerful tool that generates engaging social media posts using AI. Supports mu
   - Reliable source citations
   - Clear fact/opinion distinction
   - Built-in fact-checking guidelines
+
+## Language Support
+
+The generator supports two languages with specific features:
+
+1. **English (EN)**
+   - Professional and engaging tone
+   - Natural conversational style
+   - Platform-specific formatting
+
+2. **Bahasa Malaysia (BM)**
+   - Casual and friendly language style
+   - Uses "aku" and "kau" for personal connection
+   - Localized expressions and slang
+   - Platform-specific formatting
 
 ## Factual Accuracy Guidelines
 
